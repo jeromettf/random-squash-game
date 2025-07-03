@@ -127,7 +127,7 @@ function startGame(){
   updateCourtRect();
   const SIZE=20;
   let x=courtRect.width/2-SIZE/2, y=courtRect.height-SIZE-8;
-  let vx=(Math.random()<.5?-1:1)*10, vy=-12;
+  let vx=(Math.random()<.5?-1:1)*5, vy=-6;
   const winOrder = parseInt(document.getElementById('winOrder').value, 10);
   let destroyed=new Set(), hitUsers=[];
 

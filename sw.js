@@ -1,4 +1,4 @@
-const CACHE = 'squash-v2';
+const CACHE = 'squash-v3';
 const ASSETS = [
   './',
   './index.html',
