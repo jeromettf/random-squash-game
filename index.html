@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>랜덤 스쿼시 게임</title>
+
+  <!-- Google Font & Phosphor Icons -->
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://unpkg.com/phosphor-icons@1.4.2/src/css/phosphor.css" rel="stylesheet">
+
+  <!-- PWA -->
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#ff6f61" />
+
+  <meta name="description" content="친구들과 즐기는 자동 벽돌 파괴 랜덤 스쿼시 웹게임. 모바일에서도 가볍게 플레이하세요!" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- 히어로 -->
+  <header class="hero">
+    <h1>🎮 랜덤 스쿼시 게임</h1>
+    <button id="themeToggle" aria-label="테마 전환">
+      <i class="ph-bold ph-moon-stars"></i>
+    </button>
+  </header>
+
+  <!-- 메인 -->
+  <main class="container">
+    <!-- 유저 등록 -->
+    <section class="section glass">
+      <label>👤 유저 등록</label>
+      <input type="text" id="username" placeholder="유저 이름 입력" />
+      <button id="addUser" class="btn-flex">
+        <i class="ph ph-user-plus"></i><span>추가</span>
+      </button>
+      <div id="userList" class="user-list">등록된 유저 없음</div>
+    </section>
+
+    <!-- 승리 조건 -->
+    <section class="section glass">
+      <label>⚙️ 승리 조건 설정</label>
+      <select id="winOrder">
+        <option value="1">1번째로 부서지면 승리</option>
+        <option value="2">2번째로 부서지면 승리</option>
+        <option value="3" selected>3번째로 부서지면 승리</option>
+        <option value="4">4번째로 부서지면 승리</option>
+        <option value="5">5번째로 부서지면 승리</option>
+        <option value="6">6번째로 부서지면 승리</option>
+      </select>
+    </section>
+
+    <!-- 코트 -->
+    <section class="section glass">
+      <label>🧱 벽돌 미리보기 (총 40개)</label>
+      <div class="court-container">
+        <canvas id="particleCanvas" class="particle-canvas"></canvas>
+        <div id="brickGrid" class="brick-grid"></div>
+        <div id="ball" class="ball"></div>
+      </div>
+      <button id="shuffleBricks" class="shuffle-btn btn-flex" title="배치 다시하기">
+        <i class="ph ph-shuffle"></i><span>배치 다시하기</span>
+      </button>
+    </section>
+
+    <!-- 시작 -->
+    <section class="section glass">
+      <button id="startGame" class="start-btn btn-flex">
+        <i class="ph ph-play-circle"></i><span>게임 시작</span>
+      </button>
+    </section>
+
+    <section id="resultBox" class="result-box"></section>
+  </main>
+
+  <!-- 라이브러리 -->
+  <script defer src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"
+          onerror="window.confetti=()=>{}"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/howler@2.2.3/dist/howler.min.js"></script>
+
+  <!-- 게임 스크립트 -->
+  <script defer src="game.js"></script>
+
+  <!-- 서비스워커 -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js').catch(console.error);
+    }
+  </script>
+</body>
+</html>
